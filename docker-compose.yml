@@ -1,0 +1,25 @@
+version: '2'
+
+volumes:
+ db-data:
+   external: false
+
+services:
+  db:
+    image: postgres:12.3-alpine
+    env_file: .env
+    volumes:
+      - $PWD/../db-examatic:/var/lib/postgresql/data
+    ports:
+      - "15432:5432"
+  web:
+    build: .
+    env_file: .env
+    # user: examatic
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/examatic
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
