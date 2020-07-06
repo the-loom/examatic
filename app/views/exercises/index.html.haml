@@ -1,0 +1,15 @@
+= link_to "Nuevo ejercicio", new_exercise_path, class: "btn btn-primary"
+
+%br
+%br
+
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th
+        Enunciado
+  %tbody
+    - @exercises.each do |exercise|
+      %tr
+        %td
+          = link_to exercise.wording.to_plain_text[0..100], edit_exercise_path(exercise)
