@@ -3,9 +3,9 @@
 %br
 %br
 
+=link_to "*", exercises_path, class: "btn #{params[:tag].nil? ? 'btn-outline-dark' : 'btn-link'}"
 - @tags.each do |tag|
-  = link_to tag.name, exercises_path(params: { tag: tag.name }), class: "btn btn-outline-primary"
-=link_to "*", exercises_path, class: "btn btn-outline-primary"
+  = link_to tag.name, exercises_path(params: { tag: tag.name }), class: "btn #{params[:tag] == tag.name ? 'btn-outline-dark' : 'btn-link'}"
 
 %br
 %br
@@ -14,12 +14,16 @@
   %thead
     %tr
       %th
+        Identificador
+      %th
         Enunciado
   %tbody
     - @exercises.each do |exercise|
       %tr
         %td
-          = link_to exercise.wording, edit_exercise_path(exercise)
+          = link_to exercise.readable_id, edit_exercise_path(exercise)
+        %td
+          != peek(exercise.wording)
           %br
           - exercise.tags.each do |tag|
             %span.badge.badge-info
