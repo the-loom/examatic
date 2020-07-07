@@ -17,6 +17,8 @@
         Identificador
       %th
         Enunciado
+      %th
+        Dificultad
   %tbody
     - @exercises.each do |exercise|
       %tr
@@ -28,3 +30,5 @@
           - exercise.tags.each do |tag|
             %span.badge.badge-info
               = tag
+        %td
+          = stars_for(exercise)
