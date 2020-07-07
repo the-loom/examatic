@@ -3,6 +3,13 @@
 %br
 %br
 
+- @tags.each do |tag|
+  = link_to tag.name, exercises_path(params: { tag: tag.name }), class: "btn btn-outline-primary"
+=link_to "*", exercises_path, class: "btn btn-outline-primary"
+
+%br
+%br
+
 %table.table.table-bordered.table-hover
   %thead
     %tr
@@ -12,4 +19,8 @@
     - @exercises.each do |exercise|
       %tr
         %td
-          = link_to exercise.wording.to_plain_text[0..100], edit_exercise_path(exercise)
+          = link_to exercise.wording, edit_exercise_path(exercise)
+          %br
+          - exercise.tags.each do |tag|
+            %span.badge.badge-info
+              = tag

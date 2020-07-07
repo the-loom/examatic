@@ -1,6 +1,11 @@
 class ExercisesController < ApplicationController
   def index
-    @exercises = Exercise.all
+    if params[:tag]
+      @exercises = Exercise.tagged_with(params[:tag])
+    else
+      @exercises = Exercise.all
+    end
+    @tags = ActsAsTaggableOn::Tag.all
   end
 
   def new
@@ -35,7 +40,7 @@ class ExercisesController < ApplicationController
 
   private
     def exercise_params
-      params[:exercise].permit(:wording, :solution)
+      params[:exercise].permit(:wording, :solution, :tag_list)
     end
 
 end

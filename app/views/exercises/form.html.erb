@@ -1,8 +1,14 @@
+<legend>
+  Ejercicio
+</legend>
+
 <%= simple_form_for @exercise do |f| %>
 
-  <%=  f.input :wording, as: :rich_text_area %>
+  <%=  f.input :wording, label: "Consigna", as: :rich_text_area %>
 
-  <%=  f.input :solution, as: :rich_text_area %>
+  <%=  f.input :solution, label: "Solución", as: :rich_text_area %>
+
+  <%= f.input :tag_list, label: "Etiquetas", hint: "Separadas por comas", input_html: { value: @exercise.tag_list.to_s } %>
 
   <%= f.button :submit, class: "btn btn-primary" %>
 
