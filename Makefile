@@ -30,3 +30,12 @@ routes:
 
 logs:
 	docker-compose logs -tf
+
+production_deploy:
+	heroku maintenance:on --app examatic
+	git push -ff production master
+	heroku pg:killall --app examatic
+	heroku run rake db:migrate --app examatic
+	heroku ps:scale web=1 --app examatic
+	heroku restart --app examatic
+	heroku maintenance:off --app examatic
