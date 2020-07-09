@@ -1,4 +1,8 @@
 class ExercisesController < ApplicationController
+  def show
+    @exercise = Exercise.find(params[:id])
+  end
+
   def index
     if params[:tag]
       @exercises = Exercise.tagged_with(params[:tag])
@@ -36,6 +40,19 @@ class ExercisesController < ApplicationController
     else
       render :form
     end
+  end
+
+  def pick
+    unless session[:chosen_exercises]
+      session[:chosen_exercises] = []
+    end
+    session[:chosen_exercises] << params[:id] unless session[:chosen_exercises].include? params[:id]
+    redirect_to exercises_path
+  end
+
+  def unpick
+    session[:chosen_exercises].delete(params[:id])
+    redirect_to exercises_path
   end
 
   private

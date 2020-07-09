@@ -1,0 +1,36 @@
+- nav_add 'Exámenes', exams_path
+- nav_add @exam.readable_id, '#'
+= nav_render
+
+%h1
+  = @exam.title
+= @exam.exam_date
+
+- @exam.tags.each do |tag|
+  %span.badge.badge-info
+    = tag
+
+%hr
+
+%table.table.table-bordered.rubric
+  %thead
+    %tr
+      - @exam.exercises.size.times do |index|
+        %th
+          = "E#{index + 1}"
+      %th.last
+        Nota
+  %tbody
+    %tr
+      - @exam.exercises.size.times do |index|
+        %td
+          &nbsp;
+      %td
+        &nbsp;
+
+
+- @exam.exercises.each_with_index do |exercise, index|
+  %h2
+    = "Ejercicio ##{index + 1}"
+  = render partial: "/exercises/display", locals: {exercise: exercise}
+  %hr

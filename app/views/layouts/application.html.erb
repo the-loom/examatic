@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Examatic</title>
+
+    <title><%== page_title %></title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,12 +15,29 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">Examatic</a>
+  <a class="navbar-brand" href="/">Examatic</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "Ejercicios", exercises_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Exámenes", exams_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_exam_path, class: "nav-link" do %>
+          <i class="fas fa-clipboard-list"></i>
+          <span class="badge badge-pill badge-primary">
+            <%= (session[:chosen_exercises] || []).size %>
+          </span>
+        <% end %>
+      </li>
+    </ul>
   </div>
 </nav>
 

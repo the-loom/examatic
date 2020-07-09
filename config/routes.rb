@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  resources :exercises, except: :show
+  resources :exercises do
+    post :pick, on: :member
+    post :unpick, on: :member
+  end
+
+  resources :exams
 end

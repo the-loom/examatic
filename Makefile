@@ -13,6 +13,9 @@ stop:
 mine:
 	sudo chown -R 1000:1000 .
 
+dev_seed:
+	docker-compose run web rake db:setup db:seed
+
 build:
 	$(MAKE) stop
 	$(MAKE) mine

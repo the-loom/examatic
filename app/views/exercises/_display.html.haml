@@ -1,0 +1,9 @@
+.row
+  .col-md-6
+    - exercise.tags.each do |tag|
+      %span.badge.badge-info
+        = tag
+  .col-md-6.text-right
+    = stars_for(exercise)
+%br
+= exercise.wording

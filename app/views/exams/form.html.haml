@@ -1,0 +1,15 @@
+- nav_add 'Exámenes', exams_path
+- nav_add 'Nuevo examen', '#'
+= nav_render
+
+= simple_form_for @exam do |f|
+  = f.input :title, label: "Título"
+  = f.input :exam_date, label: "Fecha", as: :date, html5: true
+  - @exam.exercises.each_with_index do |exercise, index|
+    %h2
+      Ejercicio ##{index + 1}
+      %small.text-danger.text-right
+        = link_to "(quitar)", unpick_exercise_path(exercise), method: :post, class: "text-danger"
+    = render partial: "/exercises/display", locals: {exercise: exercise}
+    %hr/
+  = f.button :submit, "Crear examen", class: "btn btn-primary"

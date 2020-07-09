@@ -1,0 +1,34 @@
+- nav_add 'Exámenes', '#'
+= nav_render
+
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th
+        Identificador
+      %th
+        Título
+      %th
+        Resumen
+      %th
+        Fecha
+      %th
+        Acciones
+  %tbody
+    - @exams.each do |exam|
+      %tr
+        %td
+          = link_to exam.readable_id, exam_path(exam)
+        %td
+          = exam.title
+        %td
+          = exam.exercises.size
+          ejercicios
+          %br
+          - exam.tags.each do |tag|
+            %span.badge.badge-info
+              = tag
+        %td
+          = exam.exam_date
+        %td
+          TBD
