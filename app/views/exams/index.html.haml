@@ -1,19 +1,19 @@
-- nav_add 'Exámenes', '#'
+- nav_add t('activerecord.models.exam.other'), '#'
 = nav_render
 
 %table.table.table-bordered.table-hover
   %thead
     %tr
       %th
-        Identificador
+        = t 'activerecord.attributes.exam.id'
       %th
-        Título
+        = t 'activerecord.attributes.exam.title'
       %th
-        Resumen
+        = t 'activerecord.attributes.exam.summary'
       %th
-        Fecha
+        = t 'activerecord.attributes.exam.exam_date'
       %th
-        Acciones
+        = t 'common.actions'
   %tbody
     - @exams.each do |exam|
       %tr
@@ -23,7 +23,7 @@
           = exam.title
         %td
           = exam.exercises.size
-          ejercicios
+          = t('activerecord.models.exercise.other')
           %br
           - exam.tags.each do |tag|
             %span.badge.badge-info
@@ -31,4 +31,4 @@
         %td
           = exam.exam_date
         %td
-          TBD
+          = link_to t('common.exam.solutions'), solution_exam_path(exam), class: "btn btn-sm btn-outline-primary"

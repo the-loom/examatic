@@ -14,7 +14,7 @@ module NavigationHelper
 
   def page_title(separator = " | ")
     title = content_for(:title) || @title || nil
-    [title, "Examatic, by Loom"].flatten.compact.join(separator)
+    [title, t('common.tagline')].flatten.compact.join(separator)
   end
 
   private

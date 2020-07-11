@@ -1,0 +1,52 @@
+en:
+  common:
+    brand: Examatic
+    tagline: Examatic, por Loom
+    actions: Acciones
+    edit: Editar
+    pick: Elegir
+    errors: Se encontraron los siguientes errores
+    exam:
+      solutions: Ver soluciones
+  activerecord:
+    models:
+      exam:
+        one: Examen
+        other: Exámenes
+      exercise:
+        one: Ejercicio
+        other: Ejercicios
+      actions:
+        remove: Quitar
+    hints:
+      exercise:
+        tag_list: Separadas por comas
+    attributes:
+      exam:
+        id: Identificador
+        title: Título
+        exam_date: Fecha
+        summary: Resumen
+        score: Calificación
+        exercise: Ejercicio %{number}
+        exercises: Ejercicios
+      exercise:
+        id: Identificador
+        wording: Enunciado
+        solution: Solución
+        difficulty: Dificultad
+        tag_list: Etiquetas
+  helpers:
+    actions:
+      new: Nuevo %{model}
+      edit: Editar %{model}
+    select:
+      prompt: Por favor seleccione
+    submit:
+      create: Crear %{model}
+      submit: Guardar %{model}
+      update: Actualizar %{model}
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      blank: debe estar presente

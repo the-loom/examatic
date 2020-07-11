@@ -4,5 +4,7 @@ Rails.application.routes.draw do
     post :unpick, on: :member
   end
 
-  resources :exams
+  resources :exams do
+    get :solution, on: :member
+  end
 end

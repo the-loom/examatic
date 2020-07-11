@@ -33,5 +33,6 @@ module Examatic
     config.generators.system_tests = nil
 
     config.eager_load_paths << Rails.root.join('lib')
+    config.i18n.default_locale = :'es-AR'
   end
 end

@@ -1,7 +1,7 @@
-- nav_add 'Ejercicios', '#'
+- nav_add t('activerecord.models.exercise.other'), '#'
 = nav_render
 
-= link_to "Nuevo ejercicio", new_exercise_path, class: "btn btn-primary"
+= link_to t('helpers.actions.new', model: Exercise.model_name.human), new_exercise_path, class: "btn btn-primary"
 
 %br
 %br
@@ -17,13 +17,13 @@
   %thead
     %tr
       %th
-        Identificador
+        = t 'activerecord.attributes.exercise.id'
       %th
-        Enunciado
+        = t 'activerecord.attributes.exercise.wording'
       %th
-        Dificultad
+        = t 'activerecord.attributes.exercise.difficulty'
       %th
-        Acciones
+        = t 'common.actions'
   %tbody
     - @exercises.each do |exercise|
       %tr
@@ -38,5 +38,5 @@
         %td
           = stars_for(exercise)
         %td
-          = link_to "Editar", edit_exercise_path(exercise), class: "btn btn-outline-primary"
-          = link_to "Elegir", pick_exercise_path(exercise), method: :post, class: "btn btn-primary"
+          = link_to t('common.edit'), edit_exercise_path(exercise), class: "btn btn-sm btn-outline-primary"
+          = link_to t('common.pick'), pick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-primary"

@@ -1,4 +1,4 @@
-- nav_add 'Exámenes', exams_path
+- nav_add t('activerecord.models.exam.other'), exams_path
 - nav_add @exam.readable_id, '#'
 = nav_render
 
@@ -19,10 +19,10 @@
         %th
           = "E#{index + 1}"
       %th.last
-        Nota
+        = t('activerecord.attributes.exam.score')
   %tbody
     %tr
-      - @exam.exercises.size.times do |index|
+      - @exam.exercises.size.times do
         %td
           &nbsp;
       %td
@@ -31,6 +31,6 @@
 
 - @exam.exercises.each_with_index do |exercise, index|
   %h2
-    = "Ejercicio ##{index + 1}"
-  = render partial: "/exercises/display", locals: {exercise: exercise}
+    = t('activerecord.attributes.exam.exercise', number: index + 1)
+  = render partial: "/exercises/display", locals: { exercise: exercise, include_solution: @include_solution }
   %hr

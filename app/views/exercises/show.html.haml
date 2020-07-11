@@ -1,7 +1,8 @@
-- nav_add 'Ejercicios', exercises_path
+- nav_add t('activerecord.models.exercise.other'), exercises_path
 - nav_add @exercise.readable_id, '#'
 = nav_render
 
 = render partial: "/exercises/display", locals: {exercise: @exercise}
 
-= link_to "Elegir", pick_exercise_path(@exercise), method: :post, class: "btn btn-primary"
+= link_to t('common.edit'), edit_exercise_path(@exercise), class: "btn btn-outline-primary"
+= link_to t('common.pick'), pick_exercise_path(@exercise), method: :post, class: "btn btn-primary"

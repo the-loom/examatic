@@ -8,6 +8,12 @@ class ExamsController < ApplicationController
     @exam = Exam.find(params[:id])
   end
 
+  def solution
+    @exam = Exam.find(params[:id])
+    @include_solution = true
+    render :show
+  end
+
   def new
     @exam = Exam.new
     @exam.exercises = session[:chosen_exercises].map { |exercise_id| Exercise.find(exercise_id) }

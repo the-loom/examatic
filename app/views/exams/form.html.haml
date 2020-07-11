@@ -1,15 +1,18 @@
-- nav_add 'Exámenes', exams_path
-- nav_add 'Nuevo examen', '#'
+- nav_add t('activerecord.models.exam.other'), exams_path
+- nav_add t('helpers.actions.new', model: @exam.model_name.human), '#'
 = nav_render
 
 = simple_form_for @exam do |f|
-  = f.input :title, label: "Título"
-  = f.input :exam_date, label: "Fecha", as: :date, html5: true
+  = render :partial => 'shared/errors', locals: { f: f }
+
+  = f.input :title
+  = f.input :exam_date, as: :date, html5: true
   - @exam.exercises.each_with_index do |exercise, index|
     %h2
-      Ejercicio ##{index + 1}
+      = t('activerecord.models.exercise.one')
+      = "##{index + 1}"
       %small.text-danger.text-right
-        = link_to "(quitar)", unpick_exercise_path(exercise), method: :post, class: "text-danger"
+        = link_to t('activerecord.models.actions.remove'), unpick_exercise_path(exercise), method: :post, class: "text-danger"
     = render partial: "/exercises/display", locals: {exercise: exercise}
     %hr/
-  = f.button :submit, "Crear examen", class: "btn btn-primary"
+  = f.button :submit, class: "btn btn-primary"

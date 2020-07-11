@@ -1,0 +1,7 @@
+- if f.object.errors.any?
+  .alert.alert-danger
+    %h4
+      = t 'common.errors'
+    %ul
+      - f.object.errors.full_messages.each do |msg|
+        %li= msg
