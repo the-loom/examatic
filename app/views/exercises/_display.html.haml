@@ -8,6 +8,8 @@
 %br
 = exercise.wording
 
-%h3
-  = t 'activerecord.attributes.exercise.solution'
-= exercise.solution
+- if include_solution
+  %br
+  %h3
+    = t 'activerecord.attributes.exercise.solution'
+  = exercise.solution

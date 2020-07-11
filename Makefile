@@ -34,6 +34,16 @@ routes:
 logs:
 	docker-compose logs -tf
 
+use_production_db:
+	$(MAKE) stop
+	heroku pg:backups capture --app examatic
+	heroku pg:backups download --app examatic
+	mv latest.dump tmp/latest.dump
+	docker-compose run web bundle exec rake db:drop db:create
+	docker cp tmp/latest.dump examatic_db_1:/latest.dump
+	! docker exec examatic_db_1 pg_restore --verbose --clean --no-acl --no-owner -h localhost -d examatic_development -U examatic /latest.dump
+	$(MAKE) migrate
+
 production_deploy:
 	heroku maintenance:on --app examatic
 	git push -ff production master
