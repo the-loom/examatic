@@ -8,6 +8,8 @@ es:
     errors: Se encontraron los siguientes errores
     exam:
       solutions: Ver soluciones
+    pages:
+      dashboard: Tablero
   activerecord:
     models:
       exam:
