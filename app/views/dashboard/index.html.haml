@@ -1,0 +1,10 @@
+- nav_add t('common.pages.dashboard'), '#'
+= nav_render
+
+%ul
+  %li
+    = @exercises
+    = t('activerecord.models.exercise.other')
+  %li
+    = @exams
+    = t('activerecord.models.exam.other')
