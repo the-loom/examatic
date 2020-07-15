@@ -12,4 +12,16 @@ class Exercise < ApplicationRecord
   def readable_id
     "E" + id.to_s.rjust(3, "0")
   end
+
+  def dup
+    super.tap do |object|
+      object.wording = wording.dup
+      object.wording.record_id = nil
+
+      object.solution = solution.dup
+      object.solution.record_id = nil
+
+      object.tag_list = tag_list
+    end
+  end
 end

@@ -3,6 +3,11 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find(params[:id])
   end
 
+  def duplicate
+    @exercise = Exercise.find(params[:id]).dup
+    render :form
+  end
+
   def index
     if params[:tag]
       @exercises = Exercise.tagged_with(params[:tag])
