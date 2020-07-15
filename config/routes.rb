@@ -3,12 +3,13 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: :index
 
-  resources :exercises do
-    post :pick, on: :member
-    post :unpick, on: :member
-  end
-
   resources :exams do
     get :solution, on: :member
+  end
+
+  resources :exercises do
+    post :duplicate, on: :member
+    post :pick, on: :member
+    post :unpick, on: :member
   end
 end

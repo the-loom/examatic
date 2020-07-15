@@ -20,6 +20,7 @@ es:
         other: Ejercicios
       actions:
         remove: Quitar
+        duplicate: Duplicar
     hints:
       exercise:
         tag_list: Separadas por comas
