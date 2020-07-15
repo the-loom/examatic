@@ -1,5 +1,4 @@
 class ExamsController < ApplicationController
-
   def index
     @exams = Exam.all
   end
@@ -37,5 +36,4 @@ class ExamsController < ApplicationController
     def exam_params
       params[:exam].permit(:title, :exam_date)
     end
-
 end

@@ -14,11 +14,11 @@ module NavigationHelper
 
   def page_title(separator = " | ")
     title = content_for(:title) || @title || nil
-    [title, t('common.tagline')].flatten.compact.join(separator)
+    [title, t("common.tagline")].flatten.compact.join(separator)
   end
 
   private
-  def set_title
-    @title = nav_ensure.reverse.map { |nav| nav[:title] }
-  end
+    def set_title
+      @title = nav_ensure.reverse.map { |nav| nav[:title] }
+    end
 end
