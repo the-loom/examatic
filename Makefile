@@ -25,6 +25,12 @@ build:
 console:
 	docker-compose run web rails console
 
+rubocop:
+	docker-compose run web bundle exec rubocop --auto-correct
+
+rbp:
+	docker-compose run web bundle exec rails_best_practices -f html .
+
 migrate:
 	docker-compose run web bundle exec rake db:migrate
 
