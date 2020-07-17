@@ -1,8 +1,9 @@
 version: '2'
 
 volumes:
- db-data:
-   external: false
+  db-data:
+  bundle_path:
+    external: false
 
 services:
   db:
@@ -14,11 +15,14 @@ services:
       - "15432:5432"
   web:
     build: .
+    environment:
+      - BUNDLE_PATH=/bundle/vendor
     env_file: .env
     # user: examatic
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/examatic
+      - bundle_path:/bundle
     ports:
       - "3000:3000"
     depends_on:

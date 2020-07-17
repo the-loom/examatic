@@ -23,20 +23,30 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to t('activerecord.models.exercise.other'), exercises_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to t('activerecord.models.exam.other'), exams_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to new_exam_path, class: "nav-link" do %>
-          <i class="fas fa-clipboard-list"></i>
-          <span class="badge badge-pill badge-primary">
-            <%= (session[:chosen_exercises] || []).size %>
-          </span>
-        <% end %>
-      </li>
+      <% if current_user %>
+        <li class="nav-item">
+          <%= link_to t('activerecord.models.exercise.other'), exercises_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('activerecord.models.exam.other'), exams_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_exam_path, class: "nav-link" do %>
+            <i class="fas fa-clipboard-list"></i>
+            <span class="badge badge-pill badge-primary">
+              <%= (session[:chosen_exercises] || []).size %>
+            </span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+            <%= current_user.name %>
+          </a>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('oauth.logout'), logout_path, class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

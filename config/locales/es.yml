@@ -12,6 +12,9 @@ es:
       solutions: Ver soluciones
     pages:
       dashboard: Tablero
+  oauth:
+    github: Ingresar con GitHub
+    logout: Salir
   activerecord:
     errors:
       models:
