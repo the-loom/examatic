@@ -31,6 +31,10 @@ class ExamsController < ApplicationController
     end
   end
 
+  def discard
+    session[:chosen_exercises] = []
+    redirect_to exams_path
+  end
 
   private
     def exam_params

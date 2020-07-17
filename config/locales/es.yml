@@ -2,15 +2,23 @@ es:
   common:
     brand: Examatic
     tagline: Examatic, por Loom
+    all: todos
     actions: Acciones
     edit: Editar
-    pick: Elegir
+    pick: Agregar al examen
+    unpick: Quitar del examen
     errors: Se encontraron los siguientes errores
     exam:
       solutions: Ver soluciones
     pages:
       dashboard: Tablero
   activerecord:
+    errors:
+      models:
+        exam:
+          attributes:
+            exercises:
+              invalid: tienen un error
     models:
       exam:
         one: Examen
@@ -21,6 +29,7 @@ es:
       actions:
         remove: Quitar
         duplicate: Duplicar
+        discard: Descartar
     hints:
       exercise:
         tag_list: Separadas por comas
@@ -39,6 +48,7 @@ es:
         solution: Solución
         difficulty: Dificultad
         tag_list: Etiquetas
+        version: Versión
   helpers:
     actions:
       new: Nuevo %{model}

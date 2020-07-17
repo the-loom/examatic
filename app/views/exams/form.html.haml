@@ -13,6 +13,7 @@
       = "##{index + 1}"
       %small.text-danger.text-right
         = link_to t('activerecord.models.actions.remove'), unpick_exercise_path(exercise), method: :post, class: "text-danger"
-    = render partial: "/exercises/display", locals: {exercise: exercise}
+    = render partial: "/exercises/display", locals: {exercise: exercise, include_solution: false}
     %hr/
   = f.button :submit, class: "btn btn-primary"
+  = link_to t('activerecord.models.actions.discard'), discard_exams_path, method: :post, class: "btn btn-danger"

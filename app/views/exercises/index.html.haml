@@ -6,7 +6,7 @@
 %br
 %br
 
-=link_to "*", exercises_path, class: "btn #{params[:tag].nil? ? 'btn-outline-dark' : 'btn-link'}"
+=link_to t('common.all'), exercises_path, class: "btn #{params[:tag].nil? ? 'btn-outline-dark' : 'btn-link'}"
 - @tags.each do |tag|
   = link_to tag.name, exercises_path(params: { tag: tag.name }), class: "btn #{params[:tag] == tag.name ? 'btn-outline-dark' : 'btn-link'}"
 
@@ -38,6 +38,10 @@
         %td
           = stars_for(exercise)
         %td
-          = link_to t('common.edit'), edit_exercise_path(exercise), class: "btn btn-sm btn-outline-primary"
-          = link_to t('activerecord.models.actions.duplicate'), duplicate_exercise_path(exercise), method: :post, class: "btn btn-sm btn-outline-primary"
-          = link_to t('common.pick'), pick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-primary"
+          .btn-group{ role: "group" }
+            = link_to t('common.edit'), edit_exercise_path(exercise), class: "btn btn-sm btn-outline-primary"
+            = link_to t('activerecord.models.actions.duplicate'), duplicate_exercise_path(exercise), method: :post, class: "btn btn-sm btn-outline-primary"
+            - if session[:chosen_exercises].include? exercise.id
+              = link_to t('common.unpick'), unpick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-warning"
+            - else
+              = link_to t('common.pick'), pick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-primary"

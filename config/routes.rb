@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :exams do
     get :solution, on: :member
+    post :discard, on: :collection
   end
 
   resources :exercises do

@@ -7,10 +7,14 @@ class Exercise < ApplicationRecord
   has_many :exam_items
   has_many :exams, through: :exam_items
 
+  belongs_to :origin, class_name: "Exercise", optional: true
+
   acts_as_taggable_on :tags
 
+  validates_presence_of :wording, :tag_list
+
   def readable_id
-    "E" + id.to_s.rjust(3, "0")
+    "E#{id.to_s.rjust(3, "0")}.#{version}"
   end
 
   def dup

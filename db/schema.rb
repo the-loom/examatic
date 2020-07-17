@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_171440) do
+ActiveRecord::Schema.define(version: 2020_07_17_131038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,9 @@ ActiveRecord::Schema.define(version: 2020_07_09_171440) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "difficulty", default: 1
+    t.integer "version", default: 1
+    t.bigint "origin_id"
+    t.index ["origin_id"], name: "index_exercises_on_origin_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -96,5 +99,6 @@ ActiveRecord::Schema.define(version: 2020_07_09_171440) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "exercises", "exercises", column: "origin_id"
   add_foreign_key "taggings", "tags"
 end

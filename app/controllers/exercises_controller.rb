@@ -51,7 +51,9 @@ class ExercisesController < ApplicationController
     unless session[:chosen_exercises]
       session[:chosen_exercises] = []
     end
-    session[:chosen_exercises] << params[:id] unless session[:chosen_exercises].include? params[:id]
+    exercise_id = params[:id].to_i
+
+    session[:chosen_exercises] << exercise_id unless session[:chosen_exercises].include? exercise_id
     redirect_to exercises_path
   end
 
