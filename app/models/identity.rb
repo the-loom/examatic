@@ -9,13 +9,13 @@ class Identity < ApplicationRecord
   end
 
   private
-  def self.create_with_omniauth(auth)
-    create! do |identity|
-      identity.provider = auth["provider"]
-      identity.uid = auth["uid"]
-      identity.name = auth["info"]["name"]
-      identity.email = auth["info"]["email"]
-      identity.user = User.create(name: identity.name)
+    def self.create_with_omniauth(auth)
+      create! do |identity|
+        identity.provider = auth["provider"]
+        identity.uid = auth["uid"]
+        identity.name = auth["info"]["name"]
+        identity.email = auth["info"]["email"]
+        identity.user = User.create(name: identity.name)
+      end
     end
-  end
 end

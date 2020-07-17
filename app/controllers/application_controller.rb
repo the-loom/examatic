@@ -8,18 +8,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def authenticate_user!
-    unless current_user
-      redirect_to(root_path) && (return)
+    def authenticate_user!
+      unless current_user
+        redirect_to(root_path) && (return)
+      end
     end
-  end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  end
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    end
 
-  def sessions_controller?
-    controller_path.starts_with?("welcome") || controller_path.starts_with?("sessions")
-  end
+    def sessions_controller?
+      controller_path.starts_with?("welcome") || controller_path.starts_with?("sessions")
+    end
 end
