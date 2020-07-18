@@ -9,7 +9,7 @@
 .btn-group{ role: "group" }
   = link_to t('common.edit'), edit_exercise_path(@exercise), class: "btn btn-outline-primary"
   = link_to t('activerecord.models.actions.duplicate'), duplicate_exercise_path(@exercise), method: :post, class: "btn btn-outline-primary"
-  - if (session[:chosen_exercises] || []).include? exercise.id
+  - if (session[:chosen_exercises] || []).include? @exercise.id
     = link_to t('common.unpick'), unpick_exercise_path(@exercise), method: :post, class: "btn btn-warning"
   - else
     = link_to t('common.pick'), pick_exercise_path(@exercise), method: :post, class: "btn btn-primary"
