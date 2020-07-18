@@ -1,7 +1,15 @@
 - nav_add t('activerecord.models.exercise.other'), '#'
 = nav_render
 
-= link_to t('helpers.actions.new', model: Exercise.model_name.human), new_exercise_path, class: "btn btn-primary"
+.btn-group{ role: "group" }
+  = link_to new_exercise_path, class: "btn btn-primary" do
+    %i.far.fa-file
+    &nbsp;
+    = t('helpers.actions.new', model: Exercise.model_name.human)
+  = link_to archive_exercises_path, class: "btn btn-outline-primary" do
+    %i.fas.fa-archive
+    &nbsp;
+    = t('common.archive')
 
 %br
 %br
@@ -39,8 +47,6 @@
           = stars_for(exercise)
         %td
           .btn-group{ role: "group" }
-            = link_to t('common.edit'), edit_exercise_path(exercise), class: "btn btn-sm btn-outline-primary"
-            = link_to t('activerecord.models.actions.duplicate'), duplicate_exercise_path(exercise), method: :post, class: "btn btn-sm btn-outline-primary"
             - if (session[:chosen_exercises] || []).include? exercise.id
               = link_to t('common.unpick'), unpick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-warning"
             - else

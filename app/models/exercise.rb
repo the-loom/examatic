@@ -1,5 +1,6 @@
 class Exercise < ApplicationRecord
   include HasDifficulty
+  include Discard::Model
 
   has_rich_text :wording
   has_rich_text :solution

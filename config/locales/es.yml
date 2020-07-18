@@ -4,7 +4,10 @@ es:
     tagline: Examatic, por Loom
     all: todos
     actions: Acciones
+    archive: Archivo
     edit: Editar
+    destroy: Archivar
+    undestroy: Desarchivar
     pick: Agregar al examen
     unpick: Quitar del examen
     enable: Habilitar

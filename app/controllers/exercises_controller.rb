@@ -1,4 +1,17 @@
 class ExercisesController < ApplicationController
+  def index
+    if params[:tag]
+      @exercises = Exercise.kept.tagged_with(params[:tag])
+    else
+      @exercises = Exercise.kept
+    end
+    @tags = ActsAsTaggableOn::Tag.all
+  end
+
+  def archive
+    @exercises = Exercise.discarded
+  end
+
   def show
     @exercise = Exercise.find(params[:id])
   end
@@ -6,15 +19,6 @@ class ExercisesController < ApplicationController
   def duplicate
     @exercise = Exercise.find(params[:id]).dup
     render :form
-  end
-
-  def index
-    if params[:tag]
-      @exercises = Exercise.tagged_with(params[:tag])
-    else
-      @exercises = Exercise.all
-    end
-    @tags = ActsAsTaggableOn::Tag.all
   end
 
   def new
@@ -45,6 +49,18 @@ class ExercisesController < ApplicationController
     else
       render :form
     end
+  end
+
+  def destroy
+    @exercise = Exercise.find(params[:id])
+    @exercise.discard!
+    redirect_to exercises_path
+  end
+
+  def undestroy
+    @exercise = Exercise.find(params[:id])
+    @exercise.undiscard!
+    redirect_to exercises_path
   end
 
   def pick

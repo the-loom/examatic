@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_123640) do
+ActiveRecord::Schema.define(version: 2020_07_18_132319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 2020_07_18_123640) do
     t.integer "difficulty", default: 1
     t.integer "version", default: 1
     t.bigint "origin_id"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_exercises_on_discarded_at"
     t.index ["origin_id"], name: "index_exercises_on_origin_id"
   end
 

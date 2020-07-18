@@ -95,6 +95,8 @@ GEM
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     debug_inspector (0.0.3)
+    discard (1.2.0)
+      activerecord (>= 4.2, < 7)
     erubi (1.9.0)
     erubis (2.7.0)
     faraday (1.0.1)
@@ -307,6 +309,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   bullet (~> 6.1)
   byebug
+  discard (~> 1.2)
   haml-rails (~> 2.0)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)

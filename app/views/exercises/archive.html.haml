@@ -1,0 +1,31 @@
+- nav_add t('activerecord.models.exercise.other'), exercises_path
+- nav_add t('common.archive'), '#'
+= nav_render
+
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th
+        = t 'activerecord.attributes.exercise.id'
+      %th
+        = t 'activerecord.attributes.exercise.wording'
+      %th
+        = t 'activerecord.attributes.exercise.difficulty'
+      %th
+        = t 'common.actions'
+  %tbody
+    - @exercises.each do |exercise|
+      %tr
+        %td
+          = link_to exercise.readable_id, exercise_path(exercise)
+        %td
+          != peek(exercise.wording)
+          %br
+          - exercise.tags.each do |tag|
+            %span.badge.badge-info
+              = tag
+        %td
+          = stars_for(exercise)
+        %td
+          .btn-group{ role: "group" }
+            = link_to t('common.undestroy'), undestroy_exercise_path(exercise), method: :post, class: "btn btn-sm btn-primary"

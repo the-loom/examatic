@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     post :duplicate, on: :member
     post :pick, on: :member
     post :unpick, on: :member
+    get :archive, on: :collection
+    post :undestroy, on: :member
   end
 
   resources :users, only: [:index] do
