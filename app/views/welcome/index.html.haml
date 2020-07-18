@@ -1,1 +1,6 @@
-= link_to t('oauth.github'), '/auth/github', class: 'btn btn-lg btn-success', method: :post
+- unless current_user
+  = link_to t('oauth.github'), '/auth/github', class: 'btn btn-lg btn-success', method: :post
+
+- if current_user && !current_user.enabled
+  %p
+    = t('errors.disabled')

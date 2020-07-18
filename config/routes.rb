@@ -19,4 +19,8 @@ Rails.application.routes.draw do
     post :pick, on: :member
     post :unpick, on: :member
   end
+
+  resources :users, only: [:index] do
+    post :toggle_enabled, on: :member
+  end
 end

@@ -14,7 +14,7 @@ mine:
 	sudo chown -R 1000:1000 .
 
 dev_seed:
-	docker-compose run web rake db:setup db:seed
+	docker-compose run web bundle exec rake db:setup db:seed
 
 build:
 	$(MAKE) stop
@@ -23,7 +23,7 @@ build:
 	docker-compose run web bundle install --no-deployment
 
 console:
-	docker-compose run web rails console
+	docker-compose run web bundle exec rails console
 
 rubocop:
 	docker-compose run web bundle exec rubocop --auto-correct

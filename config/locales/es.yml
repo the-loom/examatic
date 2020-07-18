@@ -7,6 +7,8 @@ es:
     edit: Editar
     pick: Agregar al examen
     unpick: Quitar del examen
+    enable: Habilitar
+    disable: Deshabilitar
     errors: Se encontraron los siguientes errores
     exam:
       solutions: Ver soluciones
@@ -29,6 +31,9 @@ es:
       exercise:
         one: Ejercicio
         other: Ejercicios
+      user:
+        one: Usuario
+        other: Usuarios
       actions:
         remove: Quitar
         duplicate: Duplicar
@@ -52,6 +57,8 @@ es:
         difficulty: Dificultad
         tag_list: Etiquetas
         version: Versión
+      user:
+        name: Nombre
   helpers:
     actions:
       new: Nuevo %{model}
@@ -64,5 +71,6 @@ es:
       update: Actualizar %{model}
   errors:
     format: "%{attribute} %{message}"
+    disabled: Usuario no habilitado. Contacte con el administrador.
     messages:
       blank: debe estar presente
