@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post :unpick, on: :member
     get :archive, on: :collection
     post :undestroy, on: :member
+    post :toggle_flagged, on: :member
   end
 
   resources :users, only: [:index] do

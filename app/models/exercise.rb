@@ -18,6 +18,11 @@ class Exercise < ApplicationRecord
     "E#{id.to_s.rjust(3, "0")}.#{version}"
   end
 
+  def toggle_flagged!
+    self.flagged = !self.flagged
+    save!
+  end
+
   def dup
     super.tap do |object|
       object.wording = wording.dup

@@ -8,6 +8,8 @@ es:
     edit: Editar
     destroy: Archivar
     undestroy: Desarchivar
+    flag: Marcar para revisión
+    unflag: Desmarcar
     pick: Agregar al examen
     unpick: Quitar del examen
     enable: Habilitar
@@ -60,6 +62,8 @@ es:
         difficulty: Dificultad
         tag_list: Etiquetas
         version: Versión
+        pending: Solución pendiente
+        flagged: Marcado para revisión
       user:
         name: Nombre
   helpers:

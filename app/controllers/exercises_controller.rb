@@ -78,6 +78,12 @@ class ExercisesController < ApplicationController
     redirect_to exercises_path
   end
 
+  def toggle_flagged
+    @exercise = Exercise.find(params[:id])
+    @exercise.toggle_flagged!
+    redirect_to exercises_path
+  end
+
   private
     def exercise_params
       params[:exercise].permit(:wording, :solution, :tag_list, :difficulty)

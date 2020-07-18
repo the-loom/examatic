@@ -15,45 +15,51 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <%= link_to t('common.brand'), root_path, class: 'navbar-brand' %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <div class="container">
+    <%= link_to t('common.brand'), root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
       <% if current_user %>
-        <% if current_user.admin? %>
+        <ul class="navbar-nav mr-auto">
+          <% if current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to t('activerecord.models.user.other'), users_path, class: "nav-link" %>
+            </li>
+          <% end %>
           <li class="nav-item">
-            <%= link_to t('activerecord.models.user.other'), users_path, class: "nav-link" %>
+            <%= link_to t('activerecord.models.exercise.other'), exercises_path, class: "nav-link" %>
           </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to t('activerecord.models.exercise.other'), exercises_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to t('activerecord.models.exam.other'), exams_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to new_exam_path, class: "nav-link" do %>
-            <i class="fas fa-clipboard-list"></i>
-            <span class="badge badge-pill badge-primary">
+          <li class="nav-item">
+            <%= link_to t('activerecord.models.exam.other'), exams_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to new_exam_path, class: "nav-link" do %>
+              <i class="fas fa-clipboard-list"></i>
+              <span class="badge badge-pill badge-primary">
               <%= (session[:chosen_exercises] || []).size %>
             </span>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-            <%= current_user.name %>
-          </a>
-        </li>
-        <li class="nav-item">
-          <%= link_to t('oauth.logout'), logout_path, class: "nav-link" %>
-        </li>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+              <%= current_user.name %>
+            </a>
+          </li>
+          <li class="nav-item">
+            <%= link_to t('oauth.logout'), logout_path, class: "nav-link" %>
+          </li>
+        </ul>
       <% end %>
-    </ul>
+    </div>
   </div>
+
 </nav>
 
 <main role="main" class="container">
