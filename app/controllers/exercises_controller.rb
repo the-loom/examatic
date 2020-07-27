@@ -1,9 +1,10 @@
 class ExercisesController < ApplicationController
   def index
     if params[:tag]
-      @exercises = Exercise.kept.tagged_with(params[:tag])
+      @exercises = Exercise.kept.last_versions.tagged_with(params[:tag]).sorted
     else
-      @exercises = Exercise.kept
+      @exercises = Exercise.kept.last_versions.sorted
+
     end
     @tags = ActsAsTaggableOn::Tag.all
   end
@@ -29,6 +30,7 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new(exercise_params)
     if @exercise.valid?
+      @exercise.numerate
       @exercise.save
       redirect_to exercises_path
     else
@@ -43,8 +45,16 @@ class ExercisesController < ApplicationController
 
   def update
     @exercise = Exercise.find(params[:id])
+    @exercise.assign_attributes(exercise_params)
 
-    if @exercise.update_attributes(exercise_params)
+    if @exercise.wording.changed?
+      origin = @exercise
+      @exercise = @exercise.dup
+      @exercise.version += 1
+      @exercise.origin = origin
+    end
+
+    if @exercise.save
       redirect_to exercises_path
     else
       render :form
