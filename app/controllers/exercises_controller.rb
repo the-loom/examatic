@@ -47,7 +47,7 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find(params[:id])
     @exercise.assign_attributes(exercise_params)
 
-    if @exercise.wording.changed?
+    if @exercise.wording.changed? && !@exercise.exams.empty?
       origin = @exercise
       @exercise = @exercise.dup
       @exercise.version += 1
