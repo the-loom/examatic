@@ -21,7 +21,7 @@
 %br
 %br
 
-%table.table.table-bordered.table-hover
+%table.table.table-bordered.table-hover.exercises
   %thead
     %tr
       %th
@@ -56,3 +56,10 @@
               = link_to t('common.unpick'), unpick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-warning"
             - else
               = link_to t('common.pick'), pick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-primary"
+
+= content_for :javascript do
+  :javascript
+    $('.exercises').DataTable({
+      order: [[0, "asc"]],
+      paging: 25
+    });
