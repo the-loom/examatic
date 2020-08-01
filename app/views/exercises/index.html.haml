@@ -21,7 +21,7 @@
 %br
 %br
 
-%table.table.table-bordered.table-hover
+%table.table.table-bordered.table-hover.exercises
   %thead
     %tr
       %th
@@ -36,10 +36,10 @@
     - @exercises.each do |exercise|
       %tr
         %td
+          = link_to exercise.readable_id, exercise_path(exercise)
           - if exercise.flagged
             %i.fas.fa-flag{title: t('activerecord.attributes.exercise.flagged')}
             &nbsp;
-          = link_to exercise.readable_id, exercise_path(exercise)
         %td
           - if exercise.solution.empty?
             %i.fas.fa-exclamation-triangle{title: t('activerecord.attributes.exercise.pending')}
@@ -56,3 +56,9 @@
               = link_to t('common.unpick'), unpick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-warning"
             - else
               = link_to t('common.pick'), pick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-primary"
+
+= content_for :javascript do
+  :javascript
+    $('.exercises').DataTable({
+      order: [[0, "asc"]]
+    });
