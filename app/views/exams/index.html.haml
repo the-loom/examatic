@@ -1,7 +1,7 @@
 - nav_add t('activerecord.models.exam.other'), '#'
 = nav_render
 
-%table.table.table-bordered.table-hover
+%table.table.table-bordered.table-hover.exams
   %thead
     %tr
       %th
@@ -32,3 +32,9 @@
           = exam.exam_date
         %td
           = link_to t('common.exam.solutions'), solution_exam_path(exam), class: "btn btn-sm btn-outline-primary"
+
+= content_for :javascript do
+  :javascript
+    $('.exams').DataTable({
+      order: [[0, "asc"]]
+    });

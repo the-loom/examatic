@@ -36,10 +36,10 @@
     - @exercises.each do |exercise|
       %tr
         %td
+          = link_to exercise.readable_id, exercise_path(exercise)
           - if exercise.flagged
             %i.fas.fa-flag{title: t('activerecord.attributes.exercise.flagged')}
             &nbsp;
-          = link_to exercise.readable_id, exercise_path(exercise)
         %td
           - if exercise.solution.empty?
             %i.fas.fa-exclamation-triangle{title: t('activerecord.attributes.exercise.pending')}
@@ -60,6 +60,5 @@
 = content_for :javascript do
   :javascript
     $('.exercises').DataTable({
-      order: [[0, "asc"]],
-      paging: 25
+      order: [[0, "asc"]]
     });
