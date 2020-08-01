@@ -13,14 +13,23 @@ class Exercise < ApplicationRecord
   acts_as_taggable_on :tags
 
   validates_presence_of :wording, :tag_list
+  validates :internal_id, uniqueness: { scope: :version }
 
+  scope :last_versions, -> {
+    joins("inner join (select internal_id, max(version) as version from exercises group by internal_id) e2 on exercises.internal_id = e2.internal_id and exercises.version = e2.version")
+  }
+  scope :sorted, -> { order(:internal_id) }
   def readable_id
-    "E#{id.to_s.rjust(3, "0")}.#{version}"
+    "E#{internal_id.to_s.rjust(3, "0")}.#{version}"
   end
 
   def toggle_flagged!
     self.flagged = !self.flagged
     save!
+  end
+
+  def numerate
+    self.internal_id = Exercise.maximum(:internal_id) + 1
   end
 
   def dup

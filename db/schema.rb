@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_211737) do
+ActiveRecord::Schema.define(version: 2020_07_27_132641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_211737) do
     t.bigint "origin_id"
     t.datetime "discarded_at"
     t.boolean "flagged", default: false
+    t.integer "internal_id", default: 0
     t.index ["discarded_at"], name: "index_exercises_on_discarded_at"
     t.index ["origin_id"], name: "index_exercises_on_origin_id"
   end
