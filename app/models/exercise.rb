@@ -19,6 +19,8 @@ class Exercise < ApplicationRecord
     joins("inner join (select internal_id, max(version) as version from exercises group by internal_id) e2 on exercises.internal_id = e2.internal_id and exercises.version = e2.version")
   }
   scope :sorted, -> { order(:internal_id) }
+  scope :with_dependencies, -> { includes([:rich_text_solution, :rich_text_wording, :tag_taggings, :tags]) }
+
   def readable_id
     "E#{internal_id.to_s.rjust(3, "0")}.#{version}"
   end

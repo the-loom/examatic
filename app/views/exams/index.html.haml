@@ -25,8 +25,10 @@
           = exam.exercises.size
           = t('activerecord.models.exercise.other')
           %br
-          - exam.tags.each do |tag|
+          - exam.tags_with_count.each do |tag, count|
             %span.badge.badge-info
+              = count
+              &times;
               = tag
         %td
           = exam.exam_date

@@ -51,14 +51,21 @@
         %td
           = stars_for(exercise)
         %td
-          .btn-group{ role: "group" }
-            - if (session[:chosen_exercises] || []).include? exercise.id
-              = link_to t('common.unpick'), unpick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-warning"
-            - else
-              = link_to t('common.pick'), pick_exercise_path(exercise), method: :post, class: "btn btn-sm btn-primary"
+          = link_to t('common.pick'), pick_exercise_path(exercise), remote: true, method: :post, class: "btn btn-sm btn-primary #{'d-none' if (session[:chosen_exercises] || []).include? exercise.id}", data: { id: exercise.id }
+          = link_to t('common.unpick'), unpick_exercise_path(exercise), remote: true, method: :post, class: "btn btn-sm btn-warning #{'d-none' unless (session[:chosen_exercises] || []).include? exercise.id}", data: { id: exercise.id }
 
 = content_for :javascript do
   :javascript
     $('.exercises').DataTable({
       order: [[0, "asc"]]
+    });
+    $(".btn").on('ajax:success', function(event) {
+      var data = event.detail[0];
+      var id = data.id;
+      var total = data.total;
+
+      $("[data-id=" + id + "]").removeClass('d-none');
+      $(this).addClass('d-none');
+      
+      $("#exercises-counter").html(total);
     });

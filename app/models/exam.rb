@@ -11,4 +11,12 @@ class Exam < ApplicationRecord
   def tags
     exercises.map { |e| e.tags }.flatten.uniq
   end
+
+  def tags_with_count
+    exercises
+        .map { |e| e.tags }
+        .flatten
+        .inject(Hash.new(0)) { |total, e| total[e] += 1; total}
+        .sort { |x, y| y[1] <=> x[1] }
+  end
 end

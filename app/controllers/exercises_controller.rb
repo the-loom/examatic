@@ -1,9 +1,9 @@
 class ExercisesController < ApplicationController
   def index
     if params[:tag]
-      @exercises = Exercise.kept.last_versions.tagged_with(params[:tag]).sorted
+      @exercises = Exercise.with_dependencies.kept.last_versions.tagged_with(params[:tag]).sorted
     else
-      @exercises = Exercise.kept.last_versions.sorted
+      @exercises = Exercise.with_dependencies.kept.last_versions.sorted
 
     end
     @tags = ActsAsTaggableOn::Tag.all
@@ -78,14 +78,27 @@ class ExercisesController < ApplicationController
       session[:chosen_exercises] = []
     end
     exercise_id = params[:id].to_i
+    @exercise = Exercise.find(exercise_id)
 
     session[:chosen_exercises] << exercise_id unless session[:chosen_exercises].include? exercise_id
-    redirect_to exercises_path
+
+    respond_to do |format|
+      format.json {
+        render plain: { id: @exercise.id, total: session[:chosen_exercises].size }.to_json, status: 200, content_type: 'application/json'
+      }
+    end
   end
 
   def unpick
-    session[:chosen_exercises].delete(params[:id])
-    redirect_to exercises_path
+    exercise_id = params[:id].to_i
+    @exercise = Exercise.find(exercise_id)
+    session[:chosen_exercises].delete(exercise_id)
+
+    respond_to do |format|
+      format.json {
+        render plain: { id: @exercise.id, total: session[:chosen_exercises].size }.to_json, status: 200, content_type: 'application/json'
+      }
+    end
   end
 
   def toggle_flagged
