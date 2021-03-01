@@ -70,7 +70,7 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Attachments
-gem "aws-sdk-s3", "~> 1.75"
+gem "aws-sdk-s3", "~> 1.89"
 
 # OAuth
 gem "omniauth-github", "~> 1.4"
