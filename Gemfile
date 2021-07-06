@@ -63,7 +63,7 @@ group :development do
   gem "rails_best_practices", "~> 1.20"
   gem "rubocop-performance", "~> 1.10", require: false
   gem "rubocop-rails_config", "~> 1.5"
-  gem "rubocop-rake", "~> 0.5", require: false
+  gem "rubocop-rake", "~> 0.6", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
