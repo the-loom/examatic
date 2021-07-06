@@ -21,6 +21,7 @@ build:
 	$(MAKE) mine
 	docker-compose build
 	docker-compose run web bundle install --no-deployment
+	docker-compose run web yarn install --check-files
 
 console:
 	docker-compose run web bundle exec rails console
