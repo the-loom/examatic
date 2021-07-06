@@ -1,4 +1,13 @@
 class SessionsController < ApplicationController
+  def admin
+    unless Rails.env.development?
+      redirect_to(root_url) && return
+    end
+
+    user = User.where(admin: true).first
+    login_user(user)
+  end
+
   def create
     auth = request.env["omniauth.auth"]
 

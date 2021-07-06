@@ -10,6 +10,10 @@ stop:
 	docker-compose down
 	rm -f tmp/pids/server.pid
 
+restart:
+	$(MAKE) stop
+	$(MAKE) start
+
 mine:
 	sudo chown -R 1000:1000 .
 

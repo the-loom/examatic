@@ -1,3 +1,6 @@
+- if Rails.env.development?
+  = link_to 'AdminLogin', admin_login_path, class: 'btn btn-lg btn-danger', method: :post
+
 - unless current_user
   = link_to t('oauth.github'), '/auth/github', class: 'btn btn-lg btn-success', method: :post
 
