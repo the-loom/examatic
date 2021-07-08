@@ -11,6 +11,12 @@
   = f.input :solution, as: :rich_text_area
   = f.input :difficulty, input_html: { min: 1, max: 3 }
   = f.input :tag_list, hint: t('activerecord.hints.exercise.tag_list'), input_html: { value: @exercise.tag_list.to_s }
+
+  .tag-list
+    - ActsAsTaggableOn::Tag.all.order(name: :asc).each do |tag|
+      %span.badge.badge-info
+        = tag.name
+
   = f.button :submit, class: "btn btn-primary"
 
 = content_for :javascript do
