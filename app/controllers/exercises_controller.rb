@@ -6,7 +6,7 @@ class ExercisesController < ApplicationController
       @exercises = Exercise.with_dependencies.kept.last_versions.sorted
 
     end
-    @tags = ActsAsTaggableOn::Tag.all
+    @tags = ActsAsTaggableOn::Tag.all.order(name: :asc)
   end
 
   def archive
