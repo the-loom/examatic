@@ -49,7 +49,7 @@ group :development do
   gem "rack-mini-profiler", "~> 1.1"
 
   # Debugging
-  gem "better_errors", "~> 2.7"
+  gem "better_errors", "~> 2.9"
   gem "binding_of_caller"
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
