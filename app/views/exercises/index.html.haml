@@ -31,6 +31,8 @@
       %th
         = t 'activerecord.attributes.exercise.difficulty'
       %th
+        = t 'activerecord.attributes.exercise.last_used'
+      %th
         = t 'common.actions'
   %tbody
     - @exercises.each do |exercise|
@@ -50,6 +52,10 @@
               = tag
         %td
           = stars_for(exercise)
+        %td
+          = exercise.last_used_in_exam.try(:exam_date)
+          %br
+          = "•" * exercise.times_used
         %td
           = link_to t('common.pick'), pick_exercise_path(exercise), remote: true, method: :post, class: "btn btn-sm btn-primary #{'d-none' if (session[:chosen_exercises] || []).include? exercise.id}", data: { id: exercise.id }
           = link_to t('common.unpick'), unpick_exercise_path(exercise), remote: true, method: :post, class: "btn btn-sm btn-warning #{'d-none' unless (session[:chosen_exercises] || []).include? exercise.id}", data: { id: exercise.id }

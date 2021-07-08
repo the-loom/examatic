@@ -64,6 +64,7 @@ es:
         version: Versión
         pending: Solución pendiente
         flagged: Marcado para revisión
+        last_used: Último uso
       user:
         name: Nombre
   helpers:

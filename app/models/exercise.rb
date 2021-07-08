@@ -21,6 +21,15 @@ class Exercise < ApplicationRecord
   scope :sorted, -> { order(:internal_id) }
   scope :with_dependencies, -> { includes([:rich_text_solution, :rich_text_wording, :tag_taggings, :tags]) }
 
+  # following three methods belong to a presenter
+  def last_used_in_exam
+    exams.order(exam_date: :desc).limit(1).first
+  end
+
+  def times_used
+    exams.count
+  end
+
   def readable_id
     "E#{internal_id.to_s.rjust(3, "0")}.#{version}"
   end
