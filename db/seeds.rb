@@ -12,11 +12,11 @@ tags = %w(uno dos tres cuatro cinco seis)
       solution: html_lorem_ipsum,
       difficulty: (index % 3) + 1,
       tag_list: tags.shuffle[0..2]
-  )
+    )
 end
 
 Exam.create(
-    title: 'Primer parcial',
+    title: "Primer parcial",
     exam_date: Time.now.to_date,
     exercises: [Exercise.first, Exercise.second, Exercise.third]
-)
+  )

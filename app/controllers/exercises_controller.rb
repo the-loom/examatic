@@ -84,7 +84,7 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       format.json {
-        render plain: { id: @exercise.id, total: session[:chosen_exercises].size }.to_json, status: 200, content_type: 'application/json'
+        render plain: { id: @exercise.id, total: session[:chosen_exercises].size }.to_json, status: 200, content_type: "application/json"
       }
     end
   end
@@ -96,7 +96,7 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       format.json {
-        render plain: { id: @exercise.id, total: session[:chosen_exercises].size }.to_json, status: 200, content_type: 'application/json'
+        render plain: { id: @exercise.id, total: session[:chosen_exercises].size }.to_json, status: 200, content_type: "application/json"
       }
     end
   end

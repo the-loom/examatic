@@ -10,6 +10,9 @@ stop:
 	docker-compose down
 	rm -f tmp/pids/server.pid
 
+bash:
+	docker-compose run web bash
+
 restart:
 	$(MAKE) stop
 	$(MAKE) start
