@@ -75,4 +75,4 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "aws-sdk-s3", "~> 1.96"
 
 # OAuth
-gem "omniauth-github", "~> 1.4"
+gem "omniauth-github", "~> 2.0"
