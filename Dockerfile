@@ -8,7 +8,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 RUN apt-get install -y yarn curl
 
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
