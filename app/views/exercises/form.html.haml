@@ -13,7 +13,7 @@
   = f.input :tag_list, hint: t('activerecord.hints.exercise.tag_list'), input_html: { value: @exercise.tag_list.to_s }
 
   .tag-list
-    - ActsAsTaggableOn::Tag.all.order(name: :asc).each do |tag|
+    - @tags = ActsAsTaggableOn::Tag.includes(:taggings).where(taggings: { tenant: Subject.current.id }).order(name: :asc).each do |tag|
       %span.badge.badge-info
         = tag.name
 

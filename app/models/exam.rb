@@ -1,4 +1,6 @@
 class Exam < ApplicationRecord
+  include SubjectLock
+  
   has_many :exam_items
   has_many :exercises, through: :exam_items
 

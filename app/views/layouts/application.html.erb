@@ -47,6 +47,21 @@
             </span>
             <% end %>
           </li>
+          <% if Subject.current %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                <%= Subject.current.name %>
+              </a>
+              <div class="dropdown-menu">
+                <% current_user.subjects.each do |subject| %>
+                  <%= link_to subject.name, switch_subject_path(subject), method: :post, class: "dropdown-item" %>
+                <% end %>
+
+                <div class="dropdown-divider"></div>
+                <%= link_to "Otras materias", subjects_path, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% end %>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
               <%= current_user.name %>

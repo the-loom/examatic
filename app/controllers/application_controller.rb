@@ -1,13 +1,19 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
   before_action :authenticate_user!, unless: proc { sessions_controller? }
+  before_action :load_course
 
   def login_user(user)
     session[:user_id] = user.id
+    session[:subject_id] = user.subjects.first.id
     redirect_to dashboard_index_path
   end
 
   private
+    def load_course
+      Subject.current = Subject.find(session[:subject_id]) if session[:subject_id].present?
+    end
+    
     def authenticate_user!
       unless current_user && current_user.enabled
         redirect_to(root_path) && (return)

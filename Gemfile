@@ -35,10 +35,13 @@ gem "simple_form", "~> 5.1"
 gem "haml-rails", "~> 2.0"
 
 # Tags
-gem "acts-as-taggable-on", "~> 6.0"
+gem "acts-as-taggable-on", "~> 9.0"
 
 # Discarding stuff
 gem "discard", "~> 1.2"
+
+# Multitenancy
+gem "request_store"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

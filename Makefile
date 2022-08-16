@@ -42,6 +42,9 @@ rbp:
 migrate:
 	docker-compose run web bundle exec rake db:migrate
 
+rollback:
+	docker-compose run web bundle exec rake db:rollback
+
 routes:
 	docker-compose run web bundle exec rake routes
 

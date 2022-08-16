@@ -1,4 +1,6 @@
 class Exercise < ApplicationRecord
+  include SubjectLock
+
   include HasDifficulty
   include Discard::Model
 
@@ -11,6 +13,7 @@ class Exercise < ApplicationRecord
   belongs_to :origin, class_name: "Exercise", optional: true
 
   acts_as_taggable_on :tags
+  acts_as_taggable_tenant :subject_id
 
   validates_presence_of :wording, :tag_list
   validates :internal_id, uniqueness: { scope: :version }
@@ -40,7 +43,7 @@ class Exercise < ApplicationRecord
   end
 
   def numerate
-    self.internal_id = Exercise.maximum(:internal_id) + 1
+    self.internal_id = Exercise.unscoped.maximum(:internal_id) + 1
   end
 
   def dup

@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :identities
+  has_many :memberships
+  has_many :subjects, through: :memberships
 
   validates_presence_of :name
 

@@ -27,4 +27,11 @@ Rails.application.routes.draw do
   resources :users, only: [:index] do
     post :toggle_enabled, on: :member
   end
+
+  resources :subjects, only: [:index] do
+    member do
+      # post :enroll
+      post :switch
+    end
+  end
 end

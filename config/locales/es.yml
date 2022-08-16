@@ -36,6 +36,9 @@ es:
       exercise:
         one: Ejercicio
         other: Ejercicios
+      subject:
+        one: Materia
+        other: Materias
       user:
         one: Usuario
         other: Usuarios
@@ -47,6 +50,9 @@ es:
       exercise:
         tag_list: Separadas por comas
     attributes:
+      subject:
+        id: Identificador
+        name: Nombre
       exam:
         id: Identificador
         title: Título

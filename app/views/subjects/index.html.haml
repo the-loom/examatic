@@ -1,0 +1,25 @@
+- nav_add t('activerecord.models.subject.other'), '#'
+= nav_render
+
+%table.table.table-bordered.table-hover.subjects
+  %thead
+    %tr
+      %th
+        = t 'activerecord.attributes.subject.id'
+      %th
+        = t 'activerecord.attributes.subject.name'
+
+  %tbody
+    - @subjects.each do |subject|
+      %tr
+        %td
+          = subject.id
+        %td
+          = subject.name
+
+= content_for :javascript do
+  :javascript
+    $('.subjects').DataTable({
+      order: [[0, "asc"]]
+    });
+
