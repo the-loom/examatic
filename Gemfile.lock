@@ -181,7 +181,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
-    rack-mini-profiler (1.1.6)
+    rack-mini-profiler (3.0.0)
       rack (>= 1.2.0)
     rack-proxy (0.7.2)
       rack
@@ -341,7 +341,7 @@ DEPENDENCIES
   omniauth-github (~> 1.4)
   pg (>= 0.18, < 2.0)
   puma (~> 4.3)
-  rack-mini-profiler (~> 1.1)
+  rack-mini-profiler (~> 3.0)
   rails (~> 6.0.4)
   rails_best_practices (~> 1.21)
   request_store
