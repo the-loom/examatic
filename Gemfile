@@ -50,7 +50,7 @@ end
 
 group :development do
   # Performance asessment
-  gem "bullet", "~> 6.1"
+  gem "bullet", "~> 7.0"
   gem "rack-mini-profiler", "~> 1.1"
 
   # Debugging
